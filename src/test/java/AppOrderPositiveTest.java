@@ -27,7 +27,7 @@ public class AppOrderPositiveTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.get("http:localhost:9999");
+        driver.get("http://localhost:9999/");
     }
 
     @AfterEach
@@ -43,15 +43,11 @@ public class AppOrderPositiveTest {
         driver.findElement(By.cssSelector("[data-test-id='phone']input")).sendKeys(
         "+78007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
-        driver.findElement(BycssSelector("button.button")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
         WebElement actualElement = driver.findElement(By.cssSelector("[data-test-id=order-success]"));
         String actualText = actualElement.getText().trim();
         assertEquals(
         "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", actualText);
         assertTrue(actualElement.isDisplayed());
-    }
-
-    private By BycssSelector(String s) {
-        return null;
     }
 }
