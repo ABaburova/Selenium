@@ -46,6 +46,16 @@ public class AppOrderNegativeTest {
     }
 
     @Test
+    public void shouldBeFailedFormName1() {
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Ivanov Ivan");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+78007777777");
+        driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+        assertEquals("Поле обязательно для заполнения",
+                driver.findElement(By.cssSelector("[data-test-id=name].input_invalid .input__sub")) .getText().trim());
+    }
+
+    @Test
     public void shouldBeFailedFormPhone() {
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иванов Иван");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -60,7 +70,7 @@ public class AppOrderNegativeTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+7800777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        assertEquals("Поле заполнено не полностью, должно быть 11 символов",
+        assertEquals("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.",
                 driver.findElement(By.cssSelector("[data-test-id=phone].input_invalid .input__sub")) .getText().trim());
     }
 
