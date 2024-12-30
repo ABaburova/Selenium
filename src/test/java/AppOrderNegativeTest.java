@@ -51,7 +51,7 @@ public class AppOrderNegativeTest {
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+78007777777");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
         driver.findElement(By.cssSelector("button.button")).click();
-        assertEquals("Поле обязательно для заполнения",
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.",
                 driver.findElement(By.cssSelector("[data-test-id=name].input_invalid .input__sub")) .getText().trim());
     }
 
